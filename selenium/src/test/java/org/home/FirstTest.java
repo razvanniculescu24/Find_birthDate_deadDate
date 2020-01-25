@@ -26,6 +26,7 @@ public class FirstTest
         FileInputStream fstream = new FileInputStream(fileName);
         DataInputStream fileInput = new DataInputStream(fstream);
         BufferedReader br = new BufferedReader(new InputStreamReader(fileInput));
+        System.out.println("\n***************************************************");
 
         while ((currentLine = br.readLine()) != null)   {
             String nameToSearch = currentLine.replace("_", " ");
@@ -42,6 +43,7 @@ public class FirstTest
             String dates = GetDates(allString);
             System.out.println(currentLine + dates);
         }
+        System.out.println("***************************************************\n");
         fileInput.close();
         driver.quit();
 }
@@ -62,7 +64,7 @@ public class FirstTest
                     "(\\-|\\–) (January|February|March|April|May|June|July|August|September|October|November|December) \\d{1,2}, \\d{4}";
             Pattern r = Pattern.compile(pattern);
             Matcher m = r.matcher(inputString);
-            if(m.find()) return ": " + m.group(0).replace("\\–", "\\till");
+            if(m.find()) return ": " + m.group(0).replace("–", "-");
             else return ": Could not found the entire date format.";
         }
 }
