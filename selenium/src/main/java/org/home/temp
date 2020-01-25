@@ -1,0 +1,14 @@
+ WebElement topicSelector = driver.findElement(By.xpath("//*[@class= 'button_grey'][2]//button"));
+            topicSelector.click();
+            WebElement dropdownTopicOpenSelector = driver.findElement(By.xpath("//*[@class= 'button_grey'][2]" +
+                    "//*[@class= 'dropdown-menu open']//ul[@aria-expanded= 'true'] "));
+            List<WebElement> topicList = dropdownTopicOpenSelector.findElements(By.tagName("li"));
+            for(WebElement topic : topicList){
+                if(topic.getAttribute("data-original-index").equals("0")){
+                    continue;
+                }
+                topic.click();
+                driver.findElement(By.xpath("//*[@class= 'button_grey'][2]" +
+                        "//*[@class= 'dropdown-menu open']//ul[@aria-expanded= 'false'] "));
+                //end Topic
+            }
